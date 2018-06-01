@@ -3,6 +3,8 @@
 namespace Motork;
 
 
+use Motork\Models\Cars;
+
 class CarController
 {
     /**
@@ -12,17 +14,23 @@ class CarController
      */
     public function getIndex()
     {
-        include CONFIG_VIEWS_DIR . '/index.php';
+        $cars = Cars::all();
+
+        return view('index', $cars);
     }
 
     /**
      * Detail Action
      *
      * This should contain the car's detail and the form.
+     * @param $car_id
+     * @return mixed
      */
-    public function getDetail()
+    public function getDetail($car_id)
     {
-        include CONFIG_VIEWS_DIR . '/detail.php';
+        $car = Cars::find($car_id);
+
+        return view('detail', $car);
     }
 
     /**

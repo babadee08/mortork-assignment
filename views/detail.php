@@ -23,12 +23,12 @@
                     <article class="card">
                         <figure class="card__picture">
                             <div class="card__image">
-                                <img src="http://cdn.drivek.it/configurator-imgs/cars/it/200/OPEL/ASTRA/328_BERLINA-3-VOL-4-PORTE/nuova-opel-astra-sedan.jpg">
+                                <img src="<?php echo $car['attrs']['img']; ?>">
                             </div>
                         </figure>
                         <footer class="card__info"><span
-                                    class="make u-text--center">Opel</span>
-                            <span class="model u-text--center">Astra</span>
+                                    class="make u-text--center"><?php echo $car['attrs']['make']; ?></span>
+                            <span class="model u-text--center"><?php echo $car['attrs']['model']; ?></span>
                         </footer>
                     </article>
                 </div>

@@ -8,7 +8,7 @@ $controller = CarController::create();
 
 $urlParts = parse_url($_SERVER['REQUEST_URI']);
 if (preg_match('#^/detail/([^/]+)$#', $urlParts['path'], $matches)) {
-    $controller->getDetail();
+    $controller->getDetail($matches[1]);
 } else {
     $controller->getIndex();
 }
