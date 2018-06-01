@@ -27,5 +27,14 @@ class CreateStartingDatabase extends AbstractMigration {
 	 */
 	public function change() {
 
+	    $table = $this->table('leads_table');
+
+	    $table->addColumn('name', 'string')
+            ->addColumn('surname', 'string')
+            ->addColumn('email', 'string')
+            ->addColumn('phone', 'string')
+            ->addColumn('zip', 'string')
+            ->create();
+
 	}
 }
