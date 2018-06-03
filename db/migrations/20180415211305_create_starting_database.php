@@ -34,6 +34,7 @@ class CreateStartingDatabase extends AbstractMigration {
             ->addColumn('email', 'string')
             ->addColumn('phone', 'string')
             ->addColumn('zip', 'string')
+            ->addColumn('status', 'boolean', ['default' => false])
             ->create();
 
 	}

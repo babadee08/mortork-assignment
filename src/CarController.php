@@ -4,8 +4,9 @@ namespace Motork;
 
 
 use Motork\Models\Cars;
+use Motork\Models\Lead;
 
-class CarController
+class CarController extends BaseController
 {
     /**
      * Index Action
@@ -39,5 +40,24 @@ class CarController
     public static function create()
     {
         return new self();
+    }
+
+    public function saveLeads()
+    {
+        $this->validatePostRequest(['name', 'surname', 'email', 'phone', 'zip'], $_POST);
+
+        $data = [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+            'email' => $_POST['email'],
+            'phone' => $_POST['phone'],
+            'zip' => $_POST['zip'],
+        ];
+
+        if (!Lead::create($data)) {
+            print_r('Something went wrong');
+        }
+
+        redirect();
     }
 }
