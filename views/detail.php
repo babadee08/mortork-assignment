@@ -38,6 +38,7 @@
         <section class="multimodel__content">
             <div class="dk-forms">
                 <form method="post" action="/leads">
+                    <input type="hidden" name="csrf_token" value="<?php echo generateToken('leads-form'); ?>"/>
                     <div class="landing-form-fields">
                         <span class="field field__name">
                             <label for="name" class="gui-label">Nome</label>

@@ -11,6 +11,24 @@ namespace Motork;
 
 class BaseController
 {
+    /**
+     * BaseController constructor.
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //var_dump($_SERVER['REQUEST_METHOD'], $_POST); exit;
+
+            if ( empty( $_POST['csrf_token'] ) ) {
+                throw new \Exception('Invalid Form Request');
+            }
+
+            if( !checkToken( $_POST['csrf_token'], 'leads-form' ) ) {
+                throw new \Exception('Invalid CSRF Token');
+            }
+        }
+    }
 
     /**
      * @param array $compulsoryFields

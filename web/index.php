@@ -19,12 +19,16 @@ $routes = [
     'leads' => 'saveLeads',
     'detail/{car-id}' => 'getDetail'
 ];*/
+try {
+    if (preg_match('#^/detail/([^/]+)$#', $urlParts['path'], $matches)) {
+        $controller->getDetail($matches[1]);
+    } elseif ($urlParts['path'] == '/leads') {
+        $controller->saveLeads();
+    } else {
+        $controller->getIndex();
+    }
 
-if (preg_match('#^/detail/([^/]+)$#', $urlParts['path'], $matches)) {
-    $controller->getDetail($matches[1]);
-} elseif ($urlParts['path'] == '/leads') {
-    $controller->saveLeads();
-} else {
+} catch (Exception $ex) {
     $controller->getIndex();
 }
 
