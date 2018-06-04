@@ -39,25 +39,41 @@ class CarController extends BaseController
      */
     public static function create()
     {
-        return new self();
+        try {
+            return new self();
+        } catch (\Exception $e) {
+            setResponseMessage($e->getMessage(), 'error');
+            goBack();
+        }
     }
 
+    /**
+     * Save the leads details and
+     * redirects back to the
+     * home page.
+     */
     public function saveLeads()
     {
-        $this->validatePostRequest(['name', 'surname', 'email', 'phone', 'zip'], $_POST);
+        try {
+            $this->validatePostRequest(['name', 'surname', 'email', 'phone', 'zip'], $_POST);
 
-        $data = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-            'email' => $_POST['email'],
-            'phone' => $_POST['phone'],
-            'zip' => $_POST['zip'],
-        ];
+            $data = [
+                'name' => $_POST['name'],
+                'surname' => $_POST['surname'],
+                'email' => $_POST['email'],
+                'phone' => $_POST['phone'],
+                'zip' => $_POST['zip'],
+            ];
 
-        if (!Lead::create($data)) {
-            print_r('Something went wrong');
+            if (!Lead::create($data)) {
+                print_r('Something went wrong');
+            }
+            setResponseMessage('Leads Saved Successfully', 'status');
+
+            redirect();
+        } catch (\Exception $e) {
+            setResponseMessage($e->getMessage(), 'error');
+            goBack();
         }
-
-        redirect();
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Motork\CarController;
 
 require_once __DIR__.'/../src/bootstrap.php';
@@ -19,16 +19,10 @@ $routes = [
     'leads' => 'saveLeads',
     'detail/{car-id}' => 'getDetail'
 ];*/
-try {
-    if (preg_match('#^/detail/([^/]+)$#', $urlParts['path'], $matches)) {
-        $controller->getDetail($matches[1]);
-    } elseif ($urlParts['path'] == '/leads') {
-        $controller->saveLeads();
-    } else {
-        $controller->getIndex();
-    }
-
-} catch (Exception $ex) {
+if (preg_match('#^/detail/([^/]+)$#', $urlParts['path'], $matches)) {
+    $controller->getDetail($matches[1]);
+} elseif ($urlParts['path'] == '/leads') {
+    $controller->saveLeads();
+} else {
     $controller->getIndex();
 }
-

@@ -29,7 +29,7 @@ class BaseModel
     /**
      * Select all records from a database table.
      */
-    public function selectAll()
+    public function selectAll() : array
     {
         $statement = $this->pdo->prepare("select * from {$this->table}");
 
@@ -41,9 +41,11 @@ class BaseModel
     /**
      * Insert a record into a table.
      *
-     * @param  array  $parameters
+     * @param  array $parameters
+     * @return bool
+     * @throws \Exception
      */
-    public function insert($parameters)
+    public function insert(array $parameters) : bool
     {
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
@@ -58,8 +60,8 @@ class BaseModel
             $res = $statement->execute($parameters);
 
             return $res;
-        } catch (\Exception $e) {
-            //
+        } catch (\PDOException $e) {
+            throw new \Exception($e->getMessage(), $e->getCode());
         }
     }
 

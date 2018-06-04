@@ -15,6 +15,16 @@
         <div class="multimodel__header">
             <h1>MK Cars</h1>
         </div>
+        <?php if (checkSessionMessage('status')) { ?>
+            <div>
+                <span><?php echo getSessionMessage('status');  ?></span>
+            </div>
+        <?php } ?>
+        <?php if (checkSessionMessage('error')) { ?>
+            <div>
+                <span><?php echo getSessionMessage('error');  ?></span>
+            </div>
+        <?php } ?>
     </header>
     <div id="multimodel__wrapper" class="multimodel__wrapper">
         <section class="multimodel__slider">

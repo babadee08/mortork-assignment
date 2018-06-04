@@ -14,9 +14,9 @@ class Cars
     const SUCCESS = 200;
 
     /**
-     * @return mixed
+     * @return array
      */
-    public static function all()
+    public static function all() : array
     {
         $data = [];
         $response =  json_decode(file_get_contents('http://localhost:8889/api.php/search'), true);
@@ -28,7 +28,11 @@ class Cars
         return $data;
     }
 
-    public static function find($car_id)
+    /**
+     * @param int $car_id
+     * @return array
+     */
+    public static function find(int $car_id) : array
     {
         $data = [];
         $response =  json_decode(file_get_contents("http://localhost:8889/api.php/detail/{$car_id}"), true);
