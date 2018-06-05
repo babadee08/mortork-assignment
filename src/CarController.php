@@ -55,14 +55,16 @@ class CarController extends BaseController
     public function saveLeads()
     {
         try {
-            $this->validatePostRequest(['name', 'surname', 'email', 'phone', 'zip'], $_POST);
+            $this->validatePostRequest(['name', 'surname', 'email', 'phone', 'zip', 'privacy', 'carId'], $_POST);
 
             $data = [
-                'name' => $_POST['name'],
-                'surname' => $_POST['surname'],
-                'email' => $_POST['email'],
-                'phone' => $_POST['phone'],
-                'zip' => $_POST['zip'],
+                'name' => filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING),
+                'surname' => filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_STRING),
+                'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
+                'phone' => filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT),
+                'zip' => filter_input(INPUT_POST, 'zip', FILTER_SANITIZE_STRING),
+                'privacy' => filter_input(INPUT_POST, 'privacy', FILTER_SANITIZE_STRING),
+                'carID' => filter_input(INPUT_POST, 'carId', FILTER_SANITIZE_NUMBER_INT),
             ];
 
             if (!Lead::create($data)) {

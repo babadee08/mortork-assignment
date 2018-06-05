@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="it-IT" prefix="og: http://ogp.me/ns#">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="robots" content="noindex,nofollow">
-    <title>MK Dealer</title>
+<?php require('partials/head.php'); ?>
 
-    <link rel="stylesheet" href="/assets/multimodel.style.css" type="text/css" media="all">
-</head>
-
-<body>
-
-<main role="main" class="multimodel step-first">
-    <header class="multimodel__masthead">
-        <div class="multimodel__header">
-            <h1>MK Cars</h1>
-        </div>
-        <?php if (checkSessionMessage('status')) { ?>
-            <div>
-                <span><?php echo getSessionMessage('status');  ?></span>
-            </div>
-        <?php } ?>
-        <?php if (checkSessionMessage('error')) { ?>
-            <div>
-                <span><?php echo getSessionMessage('error');  ?></span>
-            </div>
-        <?php } ?>
-    </header>
     <div id="multimodel__wrapper" class="multimodel__wrapper">
         <section class="multimodel__slider">
             <div class="grid">
@@ -49,6 +23,7 @@
             <div class="dk-forms">
                 <form method="post" action="/leads">
                     <input type="hidden" name="csrf_token" value="<?php echo generateToken('leads-form'); ?>"/>
+                    <input type="hidden" name="carId" value="<?php echo $car['attrs']['carId']; ?>"/>
                     <div class="landing-form-fields">
                         <span class="field field__name">
                             <label for="name" class="gui-label">Nome</label>
