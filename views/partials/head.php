@@ -13,7 +13,7 @@
 <main role="main" class="multimodel step-first">
     <header class="multimodel__masthead">
         <div class="multimodel__header">
-            <h1>MK Cars</h1>
+            <h1><a href="/">MK Cars</a></h1>
         </div>
         <?php if (checkSessionMessage('status')) { ?>
             <div>

@@ -3,6 +3,7 @@
 namespace Motork;
 
 
+use Motork\Components\Recommender;
 use Motork\Models\Cars;
 use Motork\Models\Lead;
 
@@ -30,6 +31,12 @@ class CarController extends BaseController
     public function getDetail($car_id)
     {
         $car = Cars::find($car_id);
+
+        $rec = new Recommender();
+
+        $recommended = $rec->getRelatedCars($car);
+
+        $car['recommendations'] = $recommended;
 
         return view('detail', $car);
     }
