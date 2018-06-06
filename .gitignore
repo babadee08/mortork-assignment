@@ -3,3 +3,5 @@ vendor
 data/*
 data/.gitkeep
 data/cars.json
+coverage.txt
+coverage/
