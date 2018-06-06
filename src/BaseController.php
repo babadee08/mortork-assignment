@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: damilare-konga
- * Date: 6/3/18
- * Time: 11:23 AM
- */
 
 namespace Motork;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: damilare-konga
- * Date: 5/31/18
- * Time: 5:30 PM
- */
 
 /**
  * @param $name
