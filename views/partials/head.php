@@ -16,12 +16,12 @@
             <h1><a href="/">MK Cars</a></h1>
         </div>
         <?php if (checkSessionMessage('status')) { ?>
-            <div>
+            <div style="text-align: center;background-color: #4cae4c;color: white;padding: 10px">
                 <span><?php echo getSessionMessage('status');  ?></span>
             </div>
         <?php } ?>
         <?php if (checkSessionMessage('error')) { ?>
-            <div>
+            <div style="text-align: center;background-color: #cc0828;color: white;padding: 10px">
                 <span><?php echo getSessionMessage('error');  ?></span>
             </div>
         <?php } ?>

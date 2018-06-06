@@ -122,8 +122,7 @@ class Recommender
                 if ($absolute_value === 0)
                     continue;
 
-                $pre_score = ($absolute_value / $base_value) * $value;
-                $score += $pre_score;
+                $score += ($absolute_value / $base_value) * $value;
                 $intersect[] = $key;
             }
 
