@@ -10,4 +10,8 @@ environments:
         adapter: sqlite
         name: ./data/motork_dev_test
 
+    testing:
+        adapter: sqlite
+        name: ./data/motork_dev_phpunit_test
+
 version_order: creation

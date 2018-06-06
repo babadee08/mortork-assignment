@@ -3,7 +3,6 @@
 namespace Motork\Models;
 
 
-use Motork\Database\Connection;
 use PDO;
 
 class BaseModel
@@ -14,10 +13,11 @@ class BaseModel
 
     /**
      * BaseModel constructor.
+     * @param PDO $connection
      */
-    public function __construct()
+    public function __construct(PDO $connection)
     {
-        $this->pdo = Connection::make();
+        $this->pdo = $connection;
     }
 
     /**
