@@ -9,7 +9,7 @@ function view(string $name, array $data = []) {
 
     extract($data);
 
-    return require "../views/{$name}.php";
+    return require __DIR__ . "/../views/{$name}.php";
 }
 
 /**
@@ -31,9 +31,6 @@ function goBack() : void {
  * @return string
  */
 function generateToken(string $formName) : string {
-    if (!session_id()) {
-        session_start();
-    }
     $session_id = session_id();
 
     return sha1($formName.$session_id);

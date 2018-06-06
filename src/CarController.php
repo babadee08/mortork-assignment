@@ -34,7 +34,7 @@ class CarController extends BaseController
 
         $rec = new Recommender();
 
-        $recommended = $rec->getRelatedCars($car);
+        $recommended = $rec->getRelatedCars($car, 6);
 
         $car['recommendations'] = $recommended;
 

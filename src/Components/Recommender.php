@@ -24,7 +24,7 @@ class Recommender
         ],
         'int' => [
             'External size' => self::AVERAGE,
-            'trunk' => self::NEGLIGIBLE,
+            'Trunk' => self::NEGLIGIBLE,
             'Price' => self::IMPORTANT,
         ],
     ];
@@ -42,16 +42,39 @@ class Recommender
 
     /**
      * @param array $base_car
+     * @param int $recommended
      * @return array
      */
-    public function getRelatedCars(array $base_car) : array
+    public function getRelatedCars(array $base_car, int $recommended) : array
     {
-        $tag_weight = $this->tag_weight;
 
         /**
          * Map over the Cars and generate their scores
          */
-        $cars = array_map(function($car) use ($base_car, $tag_weight) {
+        $cars = $this->getCarScores($base_car);
+
+        /**
+         * Sort the Cars based of their Global Score
+         */
+        usort($cars, function ($a, $b) {
+            return $b['attrs']['score'] <=> $a['attrs']['score'];
+        });
+
+        /**
+         * return the top 6 cars based on their scores
+         */
+        return array_slice($cars, 0, $recommended);
+    }
+
+    /**
+     * @param array $base_car
+     * @return array
+     */
+    public function getCarScores(array $base_car): array
+    {
+        $tag_weight = $this->tag_weight;
+
+        $cars = array_map(function ($car) use ($base_car, $tag_weight) {
 
             $base_car_tags = $base_car['car']['tags'];
             $car_tags = $car['tags'];
@@ -116,17 +139,7 @@ class Recommender
 
         }, $this->allCars);
 
-        /**
-         * Sort the Cars based of their Global Score
-         */
-        usort($cars, function ($a, $b) {
-            return $b['attrs']['score'] <=> $a['attrs']['score'];
-        });
-
-        /**
-         * return the top 6 cars based on their scores
-         */
-        return array_slice($cars, 0, 6);
+        return $cars;
     }
 
 }
